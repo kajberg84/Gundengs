@@ -13,15 +13,17 @@ import Contact from "./pages/Contact";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <div className="bg-[#efe2d9] min-h-screen">
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/galleri" element={<Galleri />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/galleri" element={<Galleri />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
