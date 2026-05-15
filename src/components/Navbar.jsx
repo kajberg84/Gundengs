@@ -2,7 +2,10 @@ import { Search, ShoppingCart } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="bg-[#efe2d9] py-3 border-b border-black/5">
+    <header
+      className="
+     py-3 border-b border-black/5"
+    >
       <div className="max-w-6xl mx-auto px-6 flex items-center">
         <div className="flex items-center gap-3">
           <img
