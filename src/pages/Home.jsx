@@ -1,48 +1,34 @@
-import content from "../content/homeContent";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Home({ homeContent }) {
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100 transition-colors">
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <p className="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-400">
-            {content.hero.kicker}
+            {homeContent.hero.kicker}
           </p>
 
           <h1 className="text-4xl md:text-5xl font-serif leading-tight mt-4">
-            {content.hero.title}
+            {homeContent.hero.title}
           </h1>
 
           <p className="mt-6 text-gray-600 dark:text-gray-300">
-            {content.hero.subtitle}
+            {homeContent.hero.subtitle}
           </p>
 
-          {/* NAVIGATION BUTTONS FIXED */}
           <div className="flex gap-4 mt-8">
             <Link
               to="/event"
-              className="
-                px-5 py-3
-                bg-[#e3d3c2] dark:bg-zinc-700
-                rounded-md
-                hover:scale-[1.02]
-                transition
-              "
+              className="px-5 py-3 bg-[#e3d3c2] dark:bg-zinc-700 rounded-md hover:scale-[1.02] transition"
             >
               Se Events
             </Link>
 
             <Link
               to="/shop"
-              className="
-                px-5 py-3
-                border border-black dark:border-white
-                rounded-md
-                hover:scale-[1.02]
-                transition
-              "
+              className="px-5 py-3 border border-black dark:border-white rounded-md hover:scale-[1.02] transition"
             >
               Till Shop
             </Link>
@@ -51,7 +37,7 @@ export default function Home() {
 
         <div className="rounded-2xl overflow-hidden shadow-lg dark:shadow-black/40">
           <img
-            src={content.hero.image}
+            src={homeContent.hero.image}
             className="w-full h-[420px] object-cover"
           />
         </div>
@@ -63,7 +49,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6">
           <Link
-            to="/events"
+            to="/event"
             className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
           >
             <h3 className="font-semibold">Följ oss till gården</h3>
@@ -73,7 +59,7 @@ export default function Home() {
           </Link>
 
           <Link
-            to="/events"
+            to="/event"
             className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
           >
             <h3 className="font-semibold">Kouppsläpp</h3>
@@ -83,7 +69,7 @@ export default function Home() {
           </Link>
 
           <Link
-            to="/events"
+            to="/event"
             className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
           >
             <h3 className="font-semibold">Öppet gårdsbesök</h3>
@@ -108,7 +94,7 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
-          {content.categories.items.map((item, i) => (
+          {homeContent.categories.items.map((item, i) => (
             <div
               key={i}
               className="bg-[#efe7e2] dark:bg-zinc-800 rounded-xl overflow-hidden hover:scale-[1.02] transition"
@@ -132,13 +118,13 @@ export default function Home() {
           <h2 className="text-3xl font-serif">Om oss</h2>
 
           <p className="mt-6 text-gray-600 dark:text-gray-300">
-            {content.about.text}
+            {homeContent.about.text}
           </p>
         </div>
 
         <div className="rounded-2xl overflow-hidden">
           <img
-            src={content.about.image}
+            src={homeContent.about.image}
             className="w-full h-[400px] object-cover"
           />
         </div>

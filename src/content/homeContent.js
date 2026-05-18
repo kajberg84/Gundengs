@@ -1,4 +1,4 @@
-const homeContent = {
+const homeContentData = {
   hero: {
     kicker: "Välkommen till Gundengs",
     title: "Handgjort med kärlek & omtanke",
@@ -52,4 +52,4 @@ const homeContent = {
   footer: "© 2025 Gundengs Kreativa",
 };
 
-export default homeContent;
+export default homeContentData;
