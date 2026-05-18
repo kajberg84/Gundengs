@@ -58,7 +58,10 @@ function App() {
       <div className="min-h-screen bg-[#efe2d9] dark:bg-zinc-900 transition-colors">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <Routes>
-          <Route path="/" element={<Home homeContent={homeContent} />} />
+          <Route
+            path="/"
+            element={<Home homeContent={homeContent} events={events} />}
+          />
           <Route
             path="/event"
             element={<Eventspage events={events} setEvents={setEvents} />}

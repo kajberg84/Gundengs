@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function Home({ homeContent }) {
+export default function Home({ homeContent, events }) {
+  const upcomingEvents = [...events]
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .slice(0, 3);
+
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100 transition-colors">
       {/* HERO */}
@@ -38,45 +42,34 @@ export default function Home({ homeContent }) {
         <div className="rounded-2xl overflow-hidden shadow-lg dark:shadow-black/40">
           <img
             src={homeContent.hero.image}
+            alt="Hero"
             className="w-full h-[420px] object-cover"
           />
         </div>
       </section>
 
       {/* EVENTS */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-serif mb-10">Kommande Events</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <Link
-            to="/event"
-            className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
-          >
-            <h3 className="font-semibold">Följ oss till gården</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-              24/2 — Upplev gården och djuren på plats.
-            </p>
-          </Link>
+          {upcomingEvents.map((event) => (
+            <Link
+              key={event.id}
+              to="/event"
+              className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
+            >
+              <h3 className="font-semibold">{event.title}</h3>
 
-          <Link
-            to="/event"
-            className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
-          >
-            <h3 className="font-semibold">Kouppsläpp</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-              12/4 — Se korna springa ut på bete för första gången.
-            </p>
-          </Link>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                {event.date}
+              </p>
 
-          <Link
-            to="/event"
-            className="bg-[#efe7e2] dark:bg-zinc-800 p-6 rounded-xl hover:scale-[1.02] transition"
-          >
-            <h3 className="font-semibold">Öppet gårdsbesök</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-              Kom och träffa oss och djuren under säsongen.
-            </p>
-          </Link>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                {event.short}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -103,6 +96,7 @@ export default function Home({ homeContent }) {
 
               <div className="p-4">
                 <h3 className="font-medium">{item.title}</h3>
+
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                   {item.text}
                 </p>
@@ -125,6 +119,7 @@ export default function Home({ homeContent }) {
         <div className="rounded-2xl overflow-hidden">
           <img
             src={homeContent.about.image}
+            alt="Om oss"
             className="w-full h-[400px] object-cover"
           />
         </div>
