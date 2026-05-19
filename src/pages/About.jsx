@@ -1,7 +1,6 @@
 export default function About() {
   return (
     <div className="text-[#2c2c2c]">
-      {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <p className="uppercase tracking-widest text-sm text-gray-500">
@@ -21,14 +20,13 @@ export default function About() {
 
         <div className="rounded-2xl overflow-hidden shadow-lg">
           <img
-            src="/bilder/about-hero.jpg"
+            src="/bilder/logo.jpg"
             alt="Om Gundengs"
             className="w-full h-[420px] object-cover"
           />
         </div>
       </section>
 
-      {/* STORY */}
       <section className="bg-[#efe7e2] py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-serif">Vår berättelse</h2>
@@ -42,7 +40,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* VALUES */}
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-6">
         {[
           {
@@ -65,11 +62,10 @@ export default function About() {
         ))}
       </section>
 
-      {/* IMAGE SECTION */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="rounded-2xl overflow-hidden shadow-lg">
           <img
-            src="/bilder/about-bottom.jpg"
+            src="/bilder/logo.jpg"
             alt="Gundengs arbete"
             className="w-full h-[400px] object-cover"
           />

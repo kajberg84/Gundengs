@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function AdminHome({ homeContent, setHomeContent }) {
   const [draft, setDraft] = useState(homeContent);
 
-  // om content ändras utifrån (valfritt men bra)
   useEffect(() => {
     setDraft(homeContent);
   }, [homeContent]);
@@ -16,7 +15,6 @@ export default function AdminHome({ homeContent, setHomeContent }) {
     <div className="p-10 space-y-6">
       <h1 className="text-3xl font-serif">Edit Home</h1>
 
-      {/* HERO TITLE */}
       <input
         value={draft.hero.title}
         onChange={(e) =>
@@ -59,7 +57,6 @@ export default function AdminHome({ homeContent, setHomeContent }) {
         className="border p-2 w-full"
       />
 
-      {/* SAVE BUTTON */}
       <button
         onClick={handleSave}
         className="px-5 py-2 bg-black text-white rounded-md hover:opacity-80"
