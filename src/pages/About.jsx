@@ -1,17 +1,15 @@
 export default function About() {
   return (
-    <div className="text-[#2c2c2c]">
+    <div className="">
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className="uppercase tracking-widest text-sm text-gray-500">
-            Om Gundengs
-          </p>
+          <p className="uppercase tracking-widest text-sm ">Om Gundengs</p>
 
           <h1 className="text-4xl md:text-5xl font-serif leading-tight mt-4">
             Ett hantverk med själ och tradition
           </h1>
 
-          <p className="mt-6 text-gray-600 leading-relaxed">
+          <p className="mt-6  leading-relaxed">
             Gundengs är byggt på kärleken till det enkla, det naturliga och det
             genuina. Vi skapar produkter och upplevelser inspirerade av naturen,
             hantverk och tidlös design.
@@ -29,7 +27,7 @@ export default function About() {
 
       <section className="bg-[#efe7e2] py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-serif">Vår berättelse</h2>
+          <h2 className="text-3xl text-gray-600 font-serif">Vår berättelse</h2>
 
           <p className="mt-6 text-gray-600 leading-relaxed">
             Gundengs startade som en liten idé om att skapa något ärligt och
@@ -40,7 +38,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-6">
+      <section className="max-w-6xl text-gray-600 mx-auto px-6 py-20 grid md:grid-cols-3 gap-6">
         {[
           {
             title: "Hantverk",

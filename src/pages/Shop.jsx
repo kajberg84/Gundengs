@@ -5,13 +5,39 @@ export default function Shop({ shopItems, cart = [], setCart }) {
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("default");
 
-  // Hämta unika kategorier
   const categories = [
     "all",
     ...new Set(shopItems.map((item) => item.category).filter(Boolean)),
   ];
 
-  // Filtrering + sök + sortering
+  function addToCart(product) {
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === product.id);
+
+      if (existing) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: (item.quantity || 1) + 1,
+              }
+            : item,
+        );
+      }
+
+      return [
+        ...prev,
+        {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          image: product.image,
+          quantity: 1,
+        },
+      ];
+    });
+  }
+
   const filteredItems = shopItems
     .filter((item) => {
       const matchesSearch = item.title
@@ -24,24 +50,24 @@ export default function Shop({ shopItems, cart = [], setCart }) {
     })
     .sort((a, b) => {
       if (sort === "price-low") return a.price - b.price;
+
       if (sort === "price-high") return b.price - a.price;
+
       return 0;
     });
 
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100">
-      {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-16 text-center">
         <h1 className="text-4xl md:text-5xl font-serif">Shop</h1>
+
         <p className="mt-4 text-gray-600 dark:text-gray-300">
           Sök, filtrera och hitta unika produkter
         </p>
       </section>
 
-      {/* FILTER BAR */}
       <section className="max-w-6xl mx-auto px-6 mb-10">
         <div className="grid md:grid-cols-3 gap-4">
-          {/* SEARCH */}
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -49,7 +75,6 @@ export default function Shop({ shopItems, cart = [], setCart }) {
             className="p-3 rounded-xl bg-[#efe7e2] dark:bg-zinc-800"
           />
 
-          {/* CATEGORY */}
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -62,20 +87,20 @@ export default function Shop({ shopItems, cart = [], setCart }) {
             ))}
           </select>
 
-          {/* SORT */}
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
             className="p-3 rounded-xl bg-[#efe7e2] dark:bg-zinc-800"
           >
             <option value="default">Standard</option>
+
             <option value="price-low">Pris: lågt → högt</option>
+
             <option value="price-high">Pris: högt → lågt</option>
           </select>
         </div>
       </section>
 
-      {/* PRODUCTS */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-3 gap-6">
           {filteredItems.length === 0 ? (
@@ -114,13 +139,14 @@ export default function Shop({ shopItems, cart = [], setCart }) {
                     <p className="text-lg font-medium">{item.price} kr</p>
 
                     <button
-                      onClick={() => setCart([...cart, item])}
+                      onClick={() => addToCart(item)}
                       className="
                         px-4 py-2
                         bg-[#d7c3b1]
                         rounded-md
                         hover:scale-[1.05]
                         transition
+                        dark:text-black
                       "
                     >
                       Lägg i varukorg

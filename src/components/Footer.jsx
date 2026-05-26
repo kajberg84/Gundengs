@@ -1,76 +1,85 @@
-import { Link } from "react-router-dom";
+import { FaInstagram, FaFacebook, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#efe2d9] dark:bg-zinc-950 border-t border-black/10 dark:border-white/10 mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
-        {/* BRAND */}
-        <div>
-          <h2 className="text-2xl font-serif">Gundengs Kreativa</h2>
+    <footer
+      className="
+      bg-[#efe2d9]
+      dark:bg-zinc-950
+      border-t
+      border-black/10
+      dark:border-white/10
+      mt-20
+    "
+    >
+      <div
+        className="
+        max-w-6xl
+        mx-auto
+        px-6
+        py-16
+        flex
+        flex-col
+        md:flex-row
+        items-center
+        justify-between
+        gap-10
+      "
+      >
+        {/* LEFT */}
+        <div className="text-center md:text-left max-w-md">
+          <h2 className="text-3xl font-serif">Gundengs Kreativa</h2>
 
           <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
             Kreativ studio för events, design och unika produkter.
           </p>
         </div>
 
-        {/* NAV LINKS */}
-        <div className="flex flex-col space-y-2 text-sm">
-          <h3 className="font-medium mb-2">Navigation</h3>
+        {/* RIGHT - SOCIALS */}
+        <div className="flex gap-6 text-2xl">
+          {/* Instagram (gradient-like pink) */}
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:scale-110 transition text-pink-500"
+          >
+            <FaInstagram />
+          </a>
 
-          <Link to="/" className="hover:underline">
-            Hem
-          </Link>
+          {/* Facebook (blue) */}
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:scale-110 transition text-blue-600"
+          >
+            <FaFacebook />
+          </a>
 
-          <Link to="/event" className="hover:underline">
-            Events
-          </Link>
-
-          <Link to="/shop" className="hover:underline">
-            Shop
-          </Link>
-
-          <Link to="/about" className="hover:underline">
-            Om oss
-          </Link>
-
-          <Link to="/contact" className="hover:underline">
-            Kontakt
-          </Link>
-        </div>
-
-        {/* SOCIAL */}
-        <div>
-          <h3 className="font-medium mb-3">Följ oss</h3>
-
-          <div className="flex flex-col space-y-2 text-sm">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:underline"
-            >
-              Instagram
-            </a>
-
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:underline"
-            >
-              Facebook
-            </a>
-
-            <a href="mailto:kontakt@example.com" className="hover:underline">
-              Email
-            </a>
-          </div>
+          {/* Email */}
+          <a
+            href="mailto:kontakt@example.com"
+            className="hover:scale-110 transition text-gray-700 dark:text-gray-300"
+          >
+            <FaEnvelope />
+          </a>
         </div>
       </div>
 
-      {/* BOTTOM BAR */}
-      <div className="border-t border-black/10 dark:border-white/10 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} Gundengs Kreativa. All rights reserved.
+      <div
+        className="
+        border-t
+        border-black/10
+        dark:border-white/10
+        py-5
+        text-center
+        text-sm
+        text-gray-500
+        dark:text-gray-400
+      "
+      >
+        © {new Date().getFullYear()} Gundengs Kreativa
       </div>
     </footer>
   );

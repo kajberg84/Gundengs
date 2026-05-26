@@ -9,10 +9,9 @@ export default function Home({ events, shopItems, homeContent }) {
 
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100">
-      {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <p className="uppercase tracking-widest text-sm text-gray-500">
+          <p className="uppercase tracking-widest text-sm ">
             {homeContent.hero.kicker}
           </p>
 
@@ -24,14 +23,14 @@ export default function Home({ events, shopItems, homeContent }) {
             {homeContent.hero.subtitle}
           </p>
 
-          <div className="flex gap-4 mt-8">
+          <div className="flex gap-4 mt-8 dark:text-black">
             <Link to="/event" className="px-5 py-3 bg-[#e3d3c2] rounded-md">
               Se Events
             </Link>
 
             <Link
               to="/shop"
-              className="px-5 py-3 border border-black dark:border-white rounded-md"
+              className="px-5 py-3 border border-black dark:text-white dark:border-white rounded-md"
             >
               Till Shop
             </Link>
@@ -44,7 +43,6 @@ export default function Home({ events, shopItems, homeContent }) {
         />
       </section>
 
-      {/* EVENTS */}
       <section className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-serif mb-10">Kommande Events</h2>
 
@@ -71,7 +69,6 @@ export default function Home({ events, shopItems, homeContent }) {
         </div>
       </section>
 
-      {/* SHOP */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex justify-between items-end mb-8">
           <h2 className="text-2xl font-serif">Shop</h2>
@@ -102,12 +99,11 @@ export default function Home({ events, shopItems, homeContent }) {
         </div>
       </section>
 
-      {/* ABOUT */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
         <div>
           <h2 className="text-3xl font-serif">Om oss</h2>
 
-          <p className="mt-6 text-gray-600">{homeContent.about.text}</p>
+          <p className="mt-6">{homeContent.about.text}</p>
         </div>
 
         <img

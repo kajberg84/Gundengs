@@ -23,7 +23,6 @@ import AdminEvents from "./pages/AdminEvents";
 import AdminShop from "./pages/AdminShop";
 
 function App() {
-  // ---------------- EVENTS ----------------
   const [events, setEvents] = useState(() => {
     const saved = localStorage.getItem("events");
     return saved ? JSON.parse(saved) : eventContent.events;
@@ -33,7 +32,6 @@ function App() {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
 
-  // ---------------- ADMIN LOGIN ----------------
   const [isAdmin, setIsAdmin] = useState(() => {
     return localStorage.getItem("isAdmin") === "true";
   });
@@ -42,7 +40,6 @@ function App() {
     localStorage.setItem("isAdmin", isAdmin);
   }, [isAdmin]);
 
-  // ---------------- HOME CONTENT ----------------
   const [homeContent, setHomeContent] = useState(() => {
     const saved = localStorage.getItem("homeContent");
     return saved ? JSON.parse(saved) : homeContentData;
@@ -52,7 +49,6 @@ function App() {
     localStorage.setItem("homeContent", JSON.stringify(homeContent));
   }, [homeContent]);
 
-  // ---------------- SHOP ----------------
   const [shopItems, setShopItems] = useState(() => {
     const saved = localStorage.getItem("shopItems");
     return saved ? JSON.parse(saved) : shopContentData.items;
@@ -62,17 +58,42 @@ function App() {
     localStorage.setItem("shopItems", JSON.stringify(shopItems));
   }, [shopItems]);
 
-  // ---------------- CART ----------------
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem("cart");
+
+      if (!saved) return [];
+
+      const parsed = JSON.parse(saved);
+
+      return parsed.map((item) => ({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        image: item.image,
+        quantity: item.quantity || 1,
+      }));
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    try {
+      const cleanCart = cart.map((item) => ({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        image: item.image,
+        quantity: item.quantity,
+      }));
+
+      localStorage.setItem("cart", JSON.stringify(cleanCart));
+    } catch (err) {
+      console.error("Cart save failed", err);
+    }
   }, [cart]);
 
-  // ---------------- DARK MODE ----------------
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark",
   );
@@ -93,11 +114,13 @@ function App() {
     <BrowserRouter>
       <div
         className="
-        min-h-screen
-        bg-[#efe2d9]
-        dark:bg-zinc-900
-        transition-colors
-      "
+    min-h-screen
+    bg-[#efe2d9]
+    dark:bg-zinc-900
+    text-[#2c2c2c]
+    dark:text-white
+    transition-colors
+  "
       >
         <Navbar
           darkMode={darkMode}
@@ -114,12 +137,11 @@ function App() {
               <Home
                 homeContent={homeContent}
                 events={events}
-                shopItems={shopItems} // ✅ FIX: NU FUNKAR SHOP PÅ HOME
+                shopItems={shopItems}
               />
             }
           />
 
-          {/* EVENTS */}
           <Route
             path="/event"
             element={<Eventspage events={events} setEvents={setEvents} />}
@@ -128,7 +150,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/galleri" element={<Galleri />} />
 
-          {/* SHOP */}
           <Route
             path="/shop"
             element={
@@ -138,7 +159,6 @@ function App() {
 
           <Route path="/contact" element={<Contact />} />
 
-          {/* ADMIN */}
           <Route
             path="/admin"
             element={<Admin isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}

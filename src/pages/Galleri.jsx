@@ -11,17 +11,15 @@ export default function Galleri() {
   ];
 
   return (
-    <div className="text-[#2c2c2c]">
+    <div className="">
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
-        <p className="uppercase tracking-widest text-sm text-gray-500">
-          Galleri
-        </p>
+        <p className="uppercase tracking-widest text-sm ">Galleri</p>
 
         <h1 className="text-4xl md:text-5xl font-serif mt-4">
           En visuell berättelse
         </h1>
 
-        <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-6  max-w-2xl mx-auto">
           Ett urval av vår estetik, vårt hantverk och våra miljöer.
         </p>
       </section>
@@ -42,7 +40,9 @@ export default function Galleri() {
 
       <section className="bg-[#efe7e2] py-16">
         <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-2xl font-serif">Estetik genom enkelhet</h2>
+          <h2 className="text-2xl text-gray-600 font-serif">
+            Estetik genom enkelhet
+          </h2>
 
           <p className="text-gray-600 mt-2">
             Vi tror på att varje bild berättar en historia.

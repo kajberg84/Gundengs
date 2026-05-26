@@ -6,12 +6,29 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
   const [openCart, setOpenCart] = useState(false);
   const navigate = useNavigate();
 
-  const cartCount = cart?.length ?? 0;
+  // ONLY unique items (THIS is what you want)
+  const cartCount = cart.length;
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 1),
+    0,
+  );
 
   function removeItem(id) {
-    setCart(cart.filter((item) => item.id !== id));
+    setCart((prev) =>
+      prev
+        .map((item) => {
+          if (item.id !== id) return item;
+
+          const qty = item.quantity || 1;
+
+          return {
+            ...item,
+            quantity: qty - 1,
+          };
+        })
+        .filter((item) => (item.quantity || 0) > 0),
+    );
   }
 
   function goToCheckout() {
@@ -41,7 +58,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
           <Link to="/contact">Kontakt</Link>
         </nav>
 
-        {/* ICONS */}
+        {/* ACTIONS */}
         <div className="flex items-center gap-6 relative">
           {/* DARK MODE */}
           <button onClick={() => setDarkMode(!darkMode)}>
@@ -53,7 +70,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
             <Search size={20} />
           </button>
 
-          {/* CART BUTTON */}
+          {/* CART */}
           <button className="relative" onClick={() => setOpenCart(!openCart)}>
             <ShoppingCart size={20} />
 
@@ -74,7 +91,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
             )}
           </button>
 
-          {/* DROPDOWN */}
+          {/* CART DROPDOWN */}
           {openCart && (
             <div
               className="
@@ -102,11 +119,15 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
                         />
 
                         <div className="flex-1">
-                          <p className="text-sm">{item.title}</p>
+                          <p className="text-sm">
+                            {item.title}
+
+                            {item.quantity > 1 && ` x${item.quantity}`}
+                          </p>
+
                           <p className="text-xs opacity-60">{item.price} kr</p>
                         </div>
 
-                        {/* REMOVE */}
                         <button
                           onClick={() => removeItem(item.id)}
                           className="text-red-500 text-xs"
@@ -117,13 +138,11 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
                     ))}
                   </div>
 
-                  {/* TOTAL */}
                   <div className="mt-4 border-t pt-3 flex justify-between text-sm font-bold">
                     <span>Totalt</span>
                     <span>{totalPrice} kr</span>
                   </div>
 
-                  {/* CHECKOUT BUTTON */}
                   <button
                     onClick={goToCheckout}
                     className="

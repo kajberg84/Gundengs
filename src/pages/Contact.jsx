@@ -1,22 +1,20 @@
 export default function Contact() {
   return (
-    <div className="text-[#2c2c2c]">
+    <div className="">
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
-        <p className="uppercase tracking-widest text-sm text-gray-500">
-          Kontakt
-        </p>
+        <p className="uppercase tracking-widest text-sm ">Kontakt</p>
 
         <h1 className="text-4xl md:text-5xl font-serif mt-4">
           Hör av dig till oss
         </h1>
 
-        <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-6  max-w-2xl mx-auto">
           Vi svarar gärna på frågor om produkter, beställningar eller
           samarbeten.
         </p>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 pb-20 grid md:grid-cols-2 gap-10">
+      <section className="max-w-6xl mx-auto px-6 pb-20 grid md:grid-cols-2 gap-10 text-[#2c2c2c]">
         <div className="bg-[#efe7e2] p-6 rounded-xl shadow-sm">
           <h2 className="font-serif text-xl mb-6">Skicka ett meddelande</h2>
 
@@ -65,7 +63,9 @@ export default function Contact() {
 
       <section className="bg-[#efe7e2] py-16">
         <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-2xl font-serif">Vi återkommer så snart vi kan</h2>
+          <h2 className="text-2xl font-serif text-[#2c2c2c]">
+            Vi återkommer så snart vi kan
+          </h2>
 
           <p className="text-gray-600 mt-2">Vanligtvis svar inom 24 timmar.</p>
         </div>
