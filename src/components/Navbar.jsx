@@ -6,7 +6,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
   const [openCart, setOpenCart] = useState(false);
   const navigate = useNavigate();
 
-  // ONLY unique items (THIS is what you want)
+ 
   const cartCount = cart.length;
 
   const totalPrice = cart.reduce(
@@ -39,7 +39,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
   return (
     <header className="py-3 border-b border-black/5 dark:border-white/10 transition-colors relative">
       <div className="max-w-6xl mx-auto px-6 flex items-center">
-        {/* LOGO */}
+        
         <div className="flex items-center gap-3">
           <img
             src="/bilder/logotran.png"
@@ -48,7 +48,6 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
           />
         </div>
 
-        {/* NAV */}
         <nav className="hidden md:flex flex-1 justify-evenly text-sm">
           <Link to="/">Hem</Link>
           <Link to="/event">Event</Link>
@@ -58,19 +57,19 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
           <Link to="/contact">Kontakt</Link>
         </nav>
 
-        {/* ACTIONS */}
+        
         <div className="flex items-center gap-6 relative">
-          {/* DARK MODE */}
+          
           <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          {/* SEARCH */}
+         
           <button>
             <Search size={20} />
           </button>
 
-          {/* CART */}
+          
           <button className="relative" onClick={() => setOpenCart(!openCart)}>
             <ShoppingCart size={20} />
 
@@ -91,7 +90,7 @@ export default function Navbar({ darkMode, setDarkMode, cart = [], setCart }) {
             )}
           </button>
 
-          {/* CART DROPDOWN */}
+          
           {openCart && (
             <div
               className="

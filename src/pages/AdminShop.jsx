@@ -62,7 +62,7 @@ export default function AdminShop({ shopItems, setShopItems }) {
         <h1 className="text-4xl font-serif mb-10">Shop Admin</h1>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          {/* FORM */}
+          
 
           <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8">
             <h2 className="text-2xl font-serif mb-8">Lägg till produkt</h2>
@@ -93,7 +93,6 @@ export default function AdminShop({ shopItems, setShopItems }) {
                 className="w-full p-4 rounded-xl bg-[#efe7e2] dark:bg-zinc-800"
               />
 
-              {/* IMAGE UPLOAD */}
 
               <label className="block border-2 border-dashed border-[#d7c3b1] rounded-2xl p-8 cursor-pointer">
                 <input
@@ -134,7 +133,7 @@ export default function AdminShop({ shopItems, setShopItems }) {
             </div>
           </div>
 
-          {/* LIVE PREVIEW */}
+          
 
           <div>
             <h2 className="text-2xl font-serif mb-6">Live preview</h2>
@@ -169,7 +168,6 @@ export default function AdminShop({ shopItems, setShopItems }) {
           </div>
         </div>
 
-        {/* PRODUCTS */}
 
         <section className="mt-20">
           <h2 className="text-3xl font-serif mb-8">Publicerade produkter</h2>

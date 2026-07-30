@@ -9,7 +9,6 @@ export default function EventsPage({ events }) {
 
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100 transition-colors">
-      {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
         <p className="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-400">
           Kreativa möten & upplevelser
@@ -22,7 +21,7 @@ export default function EventsPage({ events }) {
         </p>
       </section>
 
-      {/* EVENTS GRID */}
+      
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-3 gap-6">
           {sortedEvents.map((event) => (
@@ -65,7 +64,7 @@ export default function EventsPage({ events }) {
         </div>
       </section>
 
-      {/* MODAL */}
+      
 
       {selectedEvent && (
         <div

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import eventContent from "./content/eventContent";
 import homeContentData from "./content/homeContent";
 import shopContentData from "./content/shopContent";
+import aboutContentData from "./content/aboutContent";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,7 @@ import Admin from "./pages/Admin";
 import AdminHome from "./pages/AdminHome";
 import AdminEvents from "./pages/AdminEvents";
 import AdminShop from "./pages/AdminShop";
+import AdminAbout from "./pages/AdminAbout";
 
 function App() {
   const [events, setEvents] = useState(() => {
@@ -57,6 +59,16 @@ function App() {
   useEffect(() => {
     localStorage.setItem("shopItems", JSON.stringify(shopItems));
   }, [shopItems]);
+
+  const [aboutContent, setAboutContent] = useState(() => {
+    const saved = localStorage.getItem("aboutContent");
+
+    return saved ? JSON.parse(saved) : aboutContentData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("aboutContent", JSON.stringify(aboutContent));
+  }, [aboutContent]);
 
   const [cart, setCart] = useState(() => {
     try {
@@ -115,7 +127,7 @@ function App() {
       <div
         className="
     min-h-screen
-    bg-[#efe2d9]
+    bg-[#f5f1ee]
     dark:bg-zinc-900
     text-[#2c2c2c]
     dark:text-white
@@ -147,7 +159,10 @@ function App() {
             element={<Eventspage events={events} setEvents={setEvents} />}
           />
 
-          <Route path="/about" element={<About />} />
+          <Route
+            path="/about"
+            element={<About aboutContent={aboutContent} />}
+          />
           <Route path="/galleri" element={<Galleri />} />
 
           <Route
@@ -169,6 +184,17 @@ function App() {
                 <AdminHome
                   homeContent={homeContent}
                   setHomeContent={setHomeContent}
+                  events={events}
+                  shopItems={shopItems}
+                />
+              }
+            />
+            <Route
+              path="about"
+              element={
+                <AdminAbout
+                  aboutContent={aboutContent}
+                  setAboutContent={setAboutContent}
                 />
               }
             />

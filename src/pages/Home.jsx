@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 
 export default function Home({ events, shopItems, homeContent }) {
-  const upcomingEvents = [...events]
+  const upcomingEvents = [...(events || [])]
     .sort((a, b) => new Date(a.date) - new Date(b.date))
     .slice(0, 3);
 
-  const featuredProducts = shopItems.slice(0, 4);
+  const featuredProducts = (shopItems || []).slice(0, 4);
 
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100">
+      {/* HERO */}
+
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <p className="uppercase tracking-widest text-sm ">
+          <p className="uppercase tracking-widest text-sm">
             {homeContent.hero.kicker}
           </p>
 
@@ -43,8 +45,12 @@ export default function Home({ events, shopItems, homeContent }) {
         />
       </section>
 
+      {/* EVENTS */}
+
       <section className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-serif mb-10">Kommande Events</h2>
+        <h2 className="text-3xl font-serif mb-10">
+          {homeContent.eventsTitle || "Kommande Events"}
+        </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
           {upcomingEvents.map((event) => (
@@ -69,12 +75,16 @@ export default function Home({ events, shopItems, homeContent }) {
         </div>
       </section>
 
+      {/* SHOP */}
+
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex justify-between items-end mb-8">
-          <h2 className="text-2xl font-serif">Shop</h2>
+          <h2 className="text-2xl font-serif">
+            {homeContent.shopTitle || "Shop"}
+          </h2>
 
           <Link to="/shop" className="text-sm underline">
-            Se alla produkter
+            {homeContent.shopLinkText || "Se alla produkter"}
           </Link>
         </div>
 
@@ -99,9 +109,13 @@ export default function Home({ events, shopItems, homeContent }) {
         </div>
       </section>
 
+      {/* ABOUT */}
+
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
         <div>
-          <h2 className="text-3xl font-serif">Om oss</h2>
+          <h2 className="text-3xl font-serif">
+            {homeContent.about.title || "Om oss"}
+          </h2>
 
           <p className="mt-6">{homeContent.about.text}</p>
         </div>

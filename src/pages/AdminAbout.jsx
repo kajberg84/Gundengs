@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function EditInput({ path, value, update, className = "" }) {
   return (
@@ -40,7 +39,7 @@ function EditText({ path, value, update, className = "" }) {
 }
 
 function ImageUpload({ path, image, update, className = "" }) {
-  function handleImage(e) {
+  function upload(e) {
     const file = e.target.files[0];
 
     if (!file) return;
@@ -56,7 +55,7 @@ function ImageUpload({ path, image, update, className = "" }) {
 
   return (
     <label className="cursor-pointer block">
-      <input type="file" accept="image/*" hidden onChange={handleImage} />
+      <input type="file" accept="image/*" hidden onChange={upload} />
 
       <img
         src={image}
@@ -70,17 +69,8 @@ function ImageUpload({ path, image, update, className = "" }) {
   );
 }
 
-export default function AdminHome({
-  events,
-  shopItems,
-  homeContent,
-  setHomeContent,
-}) {
-  const [draft, setDraft] = useState(structuredClone(homeContent));
-
-  useEffect(() => {
-    setDraft(structuredClone(homeContent));
-  }, [homeContent]);
+export default function AdminAbout({ aboutContent, setAboutContent }) {
+  const [draft, setDraft] = useState(structuredClone(aboutContent));
 
   function update(path, value) {
     const keys = path.split(".");
@@ -101,18 +91,12 @@ export default function AdminHome({
   }
 
   function saveChanges() {
-    setHomeContent(draft);
+    setAboutContent(draft);
   }
 
   function cancelChanges() {
-    setDraft(structuredClone(homeContent));
+    setDraft(structuredClone(aboutContent));
   }
-
-  const upcomingEvents = [...(events || [])]
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
-    .slice(0, 3);
-
-  const featuredProducts = (shopItems || []).slice(0, 4);
 
   return (
     <div className="text-[#2c2c2c] dark:text-gray-100">
@@ -122,7 +106,7 @@ export default function AdminHome({
         className="
 sticky
 top-0
-z-20
+z-10
 bg-[#f5f1ee]
 dark:bg-zinc-900
 p-4
@@ -168,7 +152,7 @@ px-6
 py-20
 grid
 md:grid-cols-2
-gap-10
+gap-12
 items-center
 "
       >
@@ -192,15 +176,19 @@ text-sm
 text-4xl
 md:text-5xl
 font-serif
+leading-tight
 mt-4
 "
           />
 
           <EditText
-            path="hero.subtitle"
-            value={draft.hero.subtitle}
+            path="hero.text"
+            value={draft.hero.text}
             update={update}
-            className="mt-6"
+            className="
+mt-6
+leading-relaxed
+"
           />
         </div>
 
@@ -209,158 +197,116 @@ mt-4
           image={draft.hero.image}
           update={update}
           className="
-rounded-2xl
-h-[420px]
-object-cover
 w-full
+h-[420px]
+rounded-2xl
+object-cover
 "
         />
       </section>
 
-      {/* EVENTS */}
+      {/* STORY */}
 
       <section
         className="
-max-w-6xl
-mx-auto
-px-6
+bg-[#efe7e2]
+py-20
 "
       >
-        <h2 className="text-3xl font-serif mb-10">Kommande Events</h2>
-
         <div
           className="
-grid
-md:grid-cols-3
-gap-6
-"
-        >
-          {upcomingEvents.map((event) => (
-            <Link
-              key={event.id}
-              to="/event"
-              className="
-bg-[#efe7e2]
-dark:bg-zinc-800
-rounded-xl
-overflow-hidden
-"
-            >
-              {event.image && (
-                <img
-                  src={event.image}
-                  className="
-h-40
-w-full
-object-cover
-"
-                />
-              )}
-
-              <div className="p-6">
-                <h3 className="font-serif text-lg">{event.title}</h3>
-
-                <p className="text-sm mt-2 opacity-70">{event.date}</p>
-
-                <p className="text-sm mt-2">{event.short}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* SHOP */}
-
-      <section
-        className="
-max-w-6xl
+max-w-4xl
 mx-auto
 px-6
-py-16
-"
-      >
-        <h2 className="text-2xl font-serif">Shop</h2>
-
-        <div
-          className="
-grid
-md:grid-cols-4
-gap-6
-mt-8
+text-center
 "
         >
-          {featuredProducts.map((item) => (
-            <div
-              key={item.id}
-              className="
-bg-[#efe7e2]
-dark:bg-zinc-800
-rounded-xl
-overflow-hidden
-"
-            >
-              <img
-                src={item.image}
-                className="
-h-40
-w-full
-object-cover
-"
-              />
-
-              <div className="p-4">
-                <h3>{item.title}</h3>
-
-                <p>{item.price} kr</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ABOUT */}
-
-      <section
-        className="
-max-w-6xl
-mx-auto
-px-6
-py-16
-grid
-md:grid-cols-2
-gap-10
-"
-      >
-        <div>
           <EditInput
-            path="about.title"
-            value={draft.about.title}
+            path="story.title"
+            value={draft.story.title}
             update={update}
             className="
 text-3xl
 font-serif
+text-gray-600
 "
           />
 
           <EditText
-            path="about.text"
-            value={draft.about.text}
+            path="story.text"
+            value={draft.story.text}
             update={update}
             className="
 mt-6
+text-gray-600
+leading-relaxed
 "
           />
         </div>
+      </section>
 
+      {/* VALUES */}
+
+      <section
+        className="
+max-w-6xl
+mx-auto
+px-6
+py-20
+grid
+md:grid-cols-3
+gap-6
+"
+      >
+        {draft.values.map((item, index) => (
+          <div
+            key={index}
+            className="
+bg-[#efe7e2]
+p-6
+rounded-xl
+shadow-sm
+"
+          >
+            <EditInput
+              path={`values.${index}.title`}
+              value={item.title}
+              update={update}
+              className="font-semibold"
+            />
+
+            <EditText
+              path={`values.${index}.text`}
+              value={item.text}
+              update={update}
+              className="
+text-sm
+mt-2
+"
+            />
+          </div>
+        ))}
+      </section>
+
+      {/* BOTTOM IMAGE */}
+
+      <section
+        className="
+max-w-6xl
+mx-auto
+px-6
+pb-20
+"
+      >
         <ImageUpload
-          path="about.image"
-          image={draft.about.image}
+          path="bottomImage"
+          image={draft.bottomImage}
           update={update}
           className="
-rounded-2xl
+w-full
 h-[400px]
 object-cover
-w-full
+rounded-2xl
 "
         />
       </section>

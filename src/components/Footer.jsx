@@ -26,7 +26,7 @@ export default function Footer() {
         gap-10
       "
       >
-        {/* LEFT */}
+        
         <div className="text-center md:text-left max-w-md">
           <h2 className="text-3xl font-serif">Gundengs Kreativa</h2>
 
@@ -35,9 +35,9 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* RIGHT - SOCIALS */}
+        
         <div className="flex gap-6 text-2xl">
-          {/* Instagram (gradient-like pink) */}
+          
           <a
             href="https://instagram.com"
             target="_blank"
@@ -47,7 +47,7 @@ export default function Footer() {
             <FaInstagram />
           </a>
 
-          {/* Facebook (blue) */}
+          
           <a
             href="https://facebook.com"
             target="_blank"
@@ -57,7 +57,7 @@ export default function Footer() {
             <FaFacebook />
           </a>
 
-          {/* Email */}
+          
           <a
             href="mailto:kontakt@example.com"
             className="hover:scale-110 transition text-gray-700 dark:text-gray-300"

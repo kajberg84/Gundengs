@@ -16,7 +16,7 @@ export default function AdminEvents({ events, setEvents }) {
     });
   }
 
-  // ✅ FIX: persistent image (Base64 istället för blob URL)
+  
   function handleImage(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -26,7 +26,7 @@ export default function AdminEvents({ events, setEvents }) {
     reader.onloadend = () => {
       setForm((prev) => ({
         ...prev,
-        image: reader.result, // 👈 detta sparas i localStorage
+        image: reader.result, 
       }));
     };
 
@@ -62,7 +62,7 @@ export default function AdminEvents({ events, setEvents }) {
         <h1 className="text-4xl font-serif mb-10">Event Admin</h1>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          {/* FORM */}
+          
           <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl">
             <h2 className="font-serif text-2xl mb-8">Skapa event</h2>
 
@@ -146,7 +146,7 @@ export default function AdminEvents({ events, setEvents }) {
             </div>
           </div>
 
-          {/* LIVE PREVIEW */}
+         
           <div>
             <h2 className="font-serif text-2xl mb-6">Live preview</h2>
 
