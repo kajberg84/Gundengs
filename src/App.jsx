@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { useEffect, useState } from "react";
 
 import eventContent from "./content/eventContent";
@@ -23,8 +24,10 @@ import AdminHome from "./pages/AdminHome";
 import AdminEvents from "./pages/AdminEvents";
 import AdminShop from "./pages/AdminShop";
 import AdminAbout from "./pages/AdminAbout";
+import AdminGalleri from "./pages/AdminGalleri";
 
 function App() {
+  // EVENTS
   const [events, setEvents] = useState(() => {
     const saved = localStorage.getItem("events");
     return saved ? JSON.parse(saved) : eventContent.events;
@@ -34,6 +37,7 @@ function App() {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
 
+  // ADMIN
   const [isAdmin, setIsAdmin] = useState(() => {
     return localStorage.getItem("isAdmin") === "true";
   });
@@ -42,6 +46,7 @@ function App() {
     localStorage.setItem("isAdmin", isAdmin);
   }, [isAdmin]);
 
+  // HOME CONTENT
   const [homeContent, setHomeContent] = useState(() => {
     const saved = localStorage.getItem("homeContent");
     return saved ? JSON.parse(saved) : homeContentData;
@@ -51,6 +56,7 @@ function App() {
     localStorage.setItem("homeContent", JSON.stringify(homeContent));
   }, [homeContent]);
 
+  // SHOP
   const [shopItems, setShopItems] = useState(() => {
     const saved = localStorage.getItem("shopItems");
     return saved ? JSON.parse(saved) : shopContentData.items;
@@ -60,9 +66,9 @@ function App() {
     localStorage.setItem("shopItems", JSON.stringify(shopItems));
   }, [shopItems]);
 
+  // ABOUT
   const [aboutContent, setAboutContent] = useState(() => {
     const saved = localStorage.getItem("aboutContent");
-
     return saved ? JSON.parse(saved) : aboutContentData;
   });
 
@@ -70,6 +76,48 @@ function App() {
     localStorage.setItem("aboutContent", JSON.stringify(aboutContent));
   }, [aboutContent]);
 
+  // GALLERY
+  const [galleryImages, setGalleryImages] = useState(() => {
+    const saved = localStorage.getItem("galleryImages");
+
+    if (saved) {
+      return JSON.parse(saved);
+    }
+
+    // Om du vill ha några standardbilder första gången
+    return [
+      {
+        id: 1,
+        title: "Bild 1",
+        description: "",
+        image: "/bilder/logo.jpg",
+      },
+      {
+        id: 2,
+        title: "Bild 2",
+        description: "",
+        image: "/bilder/logo.jpg",
+      },
+      {
+        id: 3,
+        title: "Bild 3",
+        description: "",
+        image: "/bilder/logo.jpg",
+      },
+      {
+        id: 4,
+        title: "Bild 4",
+        description: "",
+        image: "/bilder/logo.jpg",
+      },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("galleryImages", JSON.stringify(galleryImages));
+  }, [galleryImages]);
+
+  // CART
   const [cart, setCart] = useState(() => {
     try {
       const saved = localStorage.getItem("cart");
@@ -106,6 +154,7 @@ function App() {
     }
   }, [cart]);
 
+  // DARK MODE
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark",
   );
@@ -126,13 +175,13 @@ function App() {
     <BrowserRouter>
       <div
         className="
-    min-h-screen
-    bg-[#f5f1ee]
-    dark:bg-zinc-900
-    text-[#2c2c2c]
-    dark:text-white
-    transition-colors
-  "
+          min-h-screen
+          bg-[#f5f1ee]
+          dark:bg-zinc-900
+          text-[#2c2c2c]
+          dark:text-white
+          transition-colors
+        "
       >
         <Navbar
           darkMode={darkMode}
@@ -154,17 +203,25 @@ function App() {
             }
           />
 
+          {/* EVENT */}
           <Route
             path="/event"
             element={<Eventspage events={events} setEvents={setEvents} />}
           />
 
+          {/* ABOUT */}
           <Route
             path="/about"
             element={<About aboutContent={aboutContent} />}
           />
-          <Route path="/galleri" element={<Galleri />} />
 
+          {/* GALLERI */}
+          <Route
+            path="/galleri"
+            element={<Galleri galleryImages={galleryImages} />}
+          />
+
+          {/* SHOP */}
           <Route
             path="/shop"
             element={
@@ -172,12 +229,15 @@ function App() {
             }
           />
 
+          {/* CONTACT */}
           <Route path="/contact" element={<Contact />} />
 
+          {/* ADMIN */}
           <Route
             path="/admin"
             element={<Admin isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}
           >
+            {/* ADMIN HOME */}
             <Route
               path="home"
               element={
@@ -189,6 +249,8 @@ function App() {
                 />
               }
             />
+
+            {/* ADMIN ABOUT */}
             <Route
               path="about"
               element={
@@ -199,19 +261,33 @@ function App() {
               }
             />
 
+            {/* ADMIN EVENT */}
             <Route
               path="event"
               element={<AdminEvents events={events} setEvents={setEvents} />}
             />
 
+            {/* ADMIN SHOP */}
             <Route
               path="shop"
               element={
                 <AdminShop shopItems={shopItems} setShopItems={setShopItems} />
               }
             />
+
+            {/* ADMIN GALLERI */}
+            <Route
+              path="galleri"
+              element={
+                <AdminGalleri
+                  galleryImages={galleryImages}
+                  setGalleryImages={setGalleryImages}
+                />
+              }
+            />
           </Route>
         </Routes>
+
         <Footer />
       </div>
     </BrowserRouter>

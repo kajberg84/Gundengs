@@ -269,8 +269,6 @@ object-cover
         </div>
       </section>
 
-      {/* SHOP */}
-
       <section
         className="
 max-w-6xl

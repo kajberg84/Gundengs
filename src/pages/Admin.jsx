@@ -56,6 +56,7 @@ export default function Admin({ isAdmin, setIsAdmin }) {
         <Link to="/admin/event">Events</Link>
         <Link to="/admin/shop">Shop</Link>
         <Link to="/admin/about">About</Link>
+        <Link to="/admin/galleri">Galleri</Link>
 
         <button
           onClick={logout}

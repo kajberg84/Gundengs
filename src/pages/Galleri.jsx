@@ -1,37 +1,36 @@
-export default function Galleri() {
-  const images = [
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-    "/bilder/logo.jpg",
-  ];
-
+export default function Galleri({ galleryImages }) {
   return (
-    <div className="">
+    <div>
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
-        <p className="uppercase tracking-widest text-sm ">Galleri</p>
+        <p className="uppercase tracking-widest text-sm">Galleri</p>
 
         <h1 className="text-4xl md:text-5xl font-serif mt-4">
           En visuell berättelse
         </h1>
 
-        <p className="mt-6  max-w-2xl mx-auto">
+        <p className="mt-6 max-w-2xl mx-auto">
           Ett urval av vår estetik, vårt hantverk och våra miljöer.
         </p>
       </section>
 
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {images.map((img, i) => (
-            <div key={i} className="overflow-hidden rounded-xl shadow-sm group">
+          {galleryImages.map((item) => (
+            <div
+              key={item.id}
+              className="overflow-hidden rounded-xl shadow-sm group"
+            >
               <img
-                src={img}
-                alt={`Galleri ${i}`}
-                className="w-full h-48 object-cover group-hover:scale-105 transition duration-300"
+                src={item.image}
+                alt={item.title || "Galleri"}
+                className="
+                  w-full
+                  h-48
+                  object-cover
+                  group-hover:scale-105
+                  transition
+                  duration-300
+                "
               />
             </div>
           ))}
